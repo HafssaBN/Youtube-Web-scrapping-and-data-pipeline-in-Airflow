@@ -1,0 +1,144 @@
+[2024-12-17T02:18:24.322+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-17T02:18:24.383+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: example_passing_params_via_test_command.also_run_this scheduled__2024-12-17T02:17:00+00:00 [queued]>
+[2024-12-17T02:18:24.408+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: example_passing_params_via_test_command.also_run_this scheduled__2024-12-17T02:17:00+00:00 [queued]>
+[2024-12-17T02:18:24.410+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2024-12-17T02:18:24.470+0000] {taskinstance.py:2889} INFO - Executing <Task(BashOperator): also_run_this> on 2024-12-17 02:17:00+00:00
+[2024-12-17T02:18:24.633+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=838) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-12-17T02:18:24.656+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'example_passing_params_via_test_command', 'also_run_this', 'scheduled__2024-12-17T02:17:00+00:00', '--job-id', '284', '--raw', '--subdir', '/home/***/.local/lib/python3.12/site-packages/***/example_dags/example_passing_params_via_test_command.py', '--cfg-path', '/tmp/tmp1jtpsorw']
+[2024-12-17T02:18:24.664+0000] {standard_task_runner.py:72} INFO - Started process 840 to run task
+[2024-12-17T02:18:24.691+0000] {standard_task_runner.py:105} INFO - Job 284: Subtask also_run_this
+[2024-12-17T02:18:25.253+0000] {task_command.py:467} INFO - Running <TaskInstance: example_passing_params_via_test_command.also_run_this scheduled__2024-12-17T02:17:00+00:00 [running]> on host 5f5f90d5a1f0
+[2024-12-17T02:18:25.759+0000] {abstractoperator.py:780} ERROR - Exception rendering Jinja template for task 'also_run_this', field 'env'. Template: {'FOO': '{{ params.foo }}', 'MIFF': '{{ params.miff }}'}
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 772, in _do_render_template_fields
+    rendered_content = self.render_template(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 185, in render_template
+    return {k: self.render_template(v, context, jinja_env, oids) for k, v in value.items()}
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 171, in render_template
+    return self._render(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 727, in _render
+    return super()._render(template, context, dag=dag)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 127, in _render
+    return render_template_to_string(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 301, in render_template_to_string
+    return render_template(template, cast(MutableMapping[str, Any], context), native=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 296, in render_template
+    return "".join(nodes)
+           ^^^^^^^^^^^^^^
+  File "<template>", line 12, in root
+  File "/home/airflow/.local/lib/python3.12/site-packages/jinja2/runtime.py", line 857, in _fail_with_undefined_error
+    raise self._undefined_exception(self._undefined_message)
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'foo'
+[2024-12-17T02:18:25.775+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3115, in _execute_task_with_callbacks
+    task_orig = self.render_templates(context=context, jinja_env=jinja_env)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3534, in render_templates
+    original_task.render_template_fields(context, jinja_env)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 1430, in render_template_fields
+    self._do_render_template_fields(self, self.template_fields, context, jinja_env, set())
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 772, in _do_render_template_fields
+    rendered_content = self.render_template(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 185, in render_template
+    return {k: self.render_template(v, context, jinja_env, oids) for k, v in value.items()}
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 171, in render_template
+    return self._render(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 727, in _render
+    return super()._render(template, context, dag=dag)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 127, in _render
+    return render_template_to_string(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 301, in render_template_to_string
+    return render_template(template, cast(MutableMapping[str, Any], context), native=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 296, in render_template
+    return "".join(nodes)
+           ^^^^^^^^^^^^^^
+  File "<template>", line 12, in root
+  File "/home/airflow/.local/lib/python3.12/site-packages/jinja2/runtime.py", line 857, in _fail_with_undefined_error
+    raise self._undefined_exception(self._undefined_message)
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'foo'
+[2024-12-17T02:18:25.900+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2024-12-17T02:18:25.902+0000] {logging_mixin.py:190} INFO - Task start:2024-12-17 02:18:24.385193+00:00 end:2024-12-17 02:18:25.894532+00:00 duration:1.509339
+[2024-12-17T02:18:25.903+0000] {logging_mixin.py:190} INFO - Task:<Task(BashOperator): also_run_this> dag:<DAG: example_passing_params_via_test_command> dagrun:<DagRun example_passing_params_via_test_command @ 2024-12-17 02:17:00+00:00: scheduled__2024-12-17T02:17:00+00:00, state:running, queued_at: 2024-12-17 02:18:01.624202+00:00. externally triggered: False>
+[2024-12-17T02:18:25.904+0000] {logging_mixin.py:190} INFO - Failure caused by 'dict object' has no attribute 'foo'
+[2024-12-17T02:18:25.905+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=example_passing_params_via_test_command, task_id=also_run_this, run_id=scheduled__2024-12-17T02:17:00+00:00, execution_date=20241217T021700, start_date=20241217T021824, end_date=20241217T021825
+[2024-12-17T02:18:26.013+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-12-17T02:18:26.023+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 284 for task also_run_this ('dict object' has no attribute 'foo'; 840)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3115, in _execute_task_with_callbacks
+    task_orig = self.render_templates(context=context, jinja_env=jinja_env)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3534, in render_templates
+    original_task.render_template_fields(context, jinja_env)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 1430, in render_template_fields
+    self._do_render_template_fields(self, self.template_fields, context, jinja_env, set())
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 772, in _do_render_template_fields
+    rendered_content = self.render_template(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 185, in render_template
+    return {k: self.render_template(v, context, jinja_env, oids) for k, v in value.items()}
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 171, in render_template
+    return self._render(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/abstractoperator.py", line 727, in _render
+    return super()._render(template, context, dag=dag)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/template/templater.py", line 127, in _render
+    return render_template_to_string(template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 301, in render_template_to_string
+    return render_template(template, cast(MutableMapping[str, Any], context), native=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/helpers.py", line 296, in render_template
+    return "".join(nodes)
+           ^^^^^^^^^^^^^^
+  File "<template>", line 12, in root
+  File "/home/airflow/.local/lib/python3.12/site-packages/jinja2/runtime.py", line 857, in _fail_with_undefined_error
+    raise self._undefined_exception(self._undefined_message)
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'foo'
+[2024-12-17T02:18:26.085+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-12-17T02:18:26.156+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-12-17T02:18:26.167+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

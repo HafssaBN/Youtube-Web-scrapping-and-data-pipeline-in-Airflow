@@ -1,0 +1,29 @@
+[2024-12-17T02:01:27.360+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-17T02:01:27.465+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: example_passing_params_via_test_command.run_this scheduled__2024-12-17T01:59:00+00:00 [queued]>
+[2024-12-17T02:01:27.513+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: example_passing_params_via_test_command.run_this scheduled__2024-12-17T01:59:00+00:00 [queued]>
+[2024-12-17T02:01:27.517+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2024-12-17T02:01:27.643+0000] {taskinstance.py:2889} INFO - Executing <Task(_PythonDecoratedOperator): run_this> on 2024-12-17 01:59:00+00:00
+[2024-12-17T02:01:27.690+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=411) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-12-17T02:01:27.702+0000] {standard_task_runner.py:72} INFO - Started process 431 to run task
+[2024-12-17T02:01:27.718+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'example_passing_params_via_test_command', 'run_this', 'scheduled__2024-12-17T01:59:00+00:00', '--job-id', '218', '--raw', '--subdir', '/home/***/.local/lib/python3.12/site-packages/***/example_dags/example_passing_params_via_test_command.py', '--cfg-path', '/tmp/tmpsq04rj5v']
+[2024-12-17T02:01:27.734+0000] {standard_task_runner.py:105} INFO - Job 218: Subtask run_this
+[2024-12-17T02:01:28.166+0000] {task_command.py:467} INFO - Running <TaskInstance: example_passing_params_via_test_command.run_this scheduled__2024-12-17T01:59:00+00:00 [running]> on host 5f5f90d5a1f0
+[2024-12-17T02:01:28.480+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='example_passing_params_via_test_command' AIRFLOW_CTX_TASK_ID='run_this' AIRFLOW_CTX_EXECUTION_DATE='2024-12-17T01:59:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-17T01:59:00+00:00'
+[2024-12-17T02:01:28.486+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-12-17T02:01:28.490+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-12-17T02:01:28.491+0000] {logging_mixin.py:190} INFO - Current task name:run_this state:running start_date:2024-12-17 02:01:27.467309+00:00
+[2024-12-17T02:01:28.500+0000] {logging_mixin.py:190} INFO - Dag name:example_passing_params_via_test_command and current dag run status:running
+[2024-12-17T02:01:28.502+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-12-17T02:01:28.504+0000] {logging_mixin.py:190} INFO -  'miff' was passed in via task params = agg
+[2024-12-17T02:01:28.506+0000] {python.py:240} INFO - Done. Returned value was: 1
+[2024-12-17T02:01:28.706+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-12-17T02:01:28.708+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=example_passing_params_via_test_command, task_id=run_this, run_id=scheduled__2024-12-17T01:59:00+00:00, execution_date=20241217T015900, start_date=20241217T020127, end_date=20241217T020128
+[2024-12-17T02:01:28.758+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-12-17T02:01:28.760+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-12-17T02:01:28.761+0000] {logging_mixin.py:190} INFO - Dag name:example_passing_params_via_test_command queued_at:2024-12-17 02:00:01.840777+00:00
+[2024-12-17T02:01:28.762+0000] {logging_mixin.py:190} INFO - Task hostname:5f5f90d5a1f0 operator:_PythonDecoratedOperator
+[2024-12-17T02:01:28.831+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-12-17T02:01:28.944+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-12-17T02:01:28.954+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

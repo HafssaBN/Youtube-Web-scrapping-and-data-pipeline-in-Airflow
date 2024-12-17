@@ -1,0 +1,28 @@
+[2024-12-17T02:12:08.161+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-17T02:12:08.227+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: example_sla_dag.sleep_20 scheduled__2024-12-17T02:10:00+00:00 [queued]>
+[2024-12-17T02:12:08.254+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: example_sla_dag.sleep_20 scheduled__2024-12-17T02:10:00+00:00 [queued]>
+[2024-12-17T02:12:08.260+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2024-12-17T02:12:08.321+0000] {taskinstance.py:2889} INFO - Executing <Task(_PythonDecoratedOperator): sleep_20> on 2024-12-17 02:10:00+00:00
+[2024-12-17T02:12:08.341+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=659) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-12-17T02:12:08.346+0000] {standard_task_runner.py:72} INFO - Started process 664 to run task
+[2024-12-17T02:12:08.348+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'example_sla_dag', 'sleep_20', 'scheduled__2024-12-17T02:10:00+00:00', '--job-id', '258', '--raw', '--subdir', '/home/***/.local/lib/python3.12/site-packages/***/example_dags/example_sla_dag.py', '--cfg-path', '/tmp/tmpya0j2yi6']
+[2024-12-17T02:12:08.356+0000] {standard_task_runner.py:105} INFO - Job 258: Subtask sleep_20
+[2024-12-17T02:12:08.631+0000] {task_command.py:467} INFO - Running <TaskInstance: example_sla_dag.sleep_20 scheduled__2024-12-17T02:10:00+00:00 [running]> on host 5f5f90d5a1f0
+[2024-12-17T02:12:09.067+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='email@example.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='example_sla_dag' AIRFLOW_CTX_TASK_ID='sleep_20' AIRFLOW_CTX_EXECUTION_DATE='2024-12-17T02:10:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-17T02:10:00+00:00'
+[2024-12-17T02:12:09.073+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-12-17T02:12:09.074+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-12-17T02:12:09.075+0000] {logging_mixin.py:190} INFO - Current task name:sleep_20 state:running start_date:2024-12-17 02:12:08.228337+00:00
+[2024-12-17T02:12:09.076+0000] {logging_mixin.py:190} INFO - Dag name:example_sla_dag and current dag run status:running
+[2024-12-17T02:12:09.077+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-12-17T02:12:29.079+0000] {python.py:240} INFO - Done. Returned value was: None
+[2024-12-17T02:12:29.093+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-12-17T02:12:29.094+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=example_sla_dag, task_id=sleep_20, run_id=scheduled__2024-12-17T02:10:00+00:00, execution_date=20241217T021000, start_date=20241217T021208, end_date=20241217T021229
+[2024-12-17T02:12:29.114+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-12-17T02:12:29.115+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-12-17T02:12:29.115+0000] {logging_mixin.py:190} INFO - Dag name:example_sla_dag queued_at:2024-12-17 02:12:00.632618+00:00
+[2024-12-17T02:12:29.116+0000] {logging_mixin.py:190} INFO - Task hostname:5f5f90d5a1f0 operator:_PythonDecoratedOperator
+[2024-12-17T02:12:29.149+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-12-17T02:12:29.180+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-12-17T02:12:29.186+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

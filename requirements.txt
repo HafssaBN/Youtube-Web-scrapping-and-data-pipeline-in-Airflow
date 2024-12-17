@@ -1,0 +1,9 @@
+google-api-python-client
+python-dateutil
+pandas
+ipython
+seaborn
+matplotlib
+nltk
+wordcloud
+gunicorn

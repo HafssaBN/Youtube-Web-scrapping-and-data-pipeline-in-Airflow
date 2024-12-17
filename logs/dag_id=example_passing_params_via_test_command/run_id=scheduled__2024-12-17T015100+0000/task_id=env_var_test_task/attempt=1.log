@@ -1,0 +1,12 @@
+[2024-12-17T01:56:08.917+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-17T01:56:09.602+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: example_passing_params_via_test_command.env_var_test_task scheduled__2024-12-17T01:51:00+00:00 [queued]>
+[2024-12-17T01:56:09.912+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: example_passing_params_via_test_command.env_var_test_task scheduled__2024-12-17T01:51:00+00:00 [queued]>
+[2024-12-17T01:56:09.931+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2024-12-17T01:56:10.753+0000] {taskinstance.py:2889} INFO - Executing <Task(_PythonDecoratedOperator): env_var_test_task> on 2024-12-17 01:51:00+00:00
+[2024-12-17T01:56:11.776+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=330) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-12-17T01:56:11.828+0000] {standard_task_runner.py:72} INFO - Started process 361 to run task
+[2024-12-17T01:56:12.061+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'example_passing_params_via_test_command', 'env_var_test_task', 'scheduled__2024-12-17T01:51:00+00:00', '--job-id', '203', '--raw', '--subdir', '/home/***/.local/lib/python3.12/site-packages/***/example_dags/example_passing_params_via_test_command.py', '--cfg-path', '/tmp/tmpf1my05cs']
+[2024-12-17T01:56:12.076+0000] {standard_task_runner.py:105} INFO - Job 203: Subtask env_var_test_task
+[2024-12-17T01:56:14.778+0000] {task_command.py:467} INFO - Running <TaskInstance: example_passing_params_via_test_command.env_var_test_task scheduled__2024-12-17T01:51:00+00:00 [running]> on host 5f5f90d5a1f0

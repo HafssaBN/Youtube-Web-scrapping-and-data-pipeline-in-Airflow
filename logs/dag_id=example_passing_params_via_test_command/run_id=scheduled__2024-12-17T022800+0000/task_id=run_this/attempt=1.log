@@ -1,0 +1,28 @@
+[2024-12-17T02:29:06.020+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-17T02:29:06.056+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: example_passing_params_via_test_command.run_this scheduled__2024-12-17T02:28:00+00:00 [queued]>
+[2024-12-17T02:29:06.077+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: example_passing_params_via_test_command.run_this scheduled__2024-12-17T02:28:00+00:00 [queued]>
+[2024-12-17T02:29:06.079+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2024-12-17T02:29:06.161+0000] {taskinstance.py:2889} INFO - Executing <Task(_PythonDecoratedOperator): run_this> on 2024-12-17 02:28:00+00:00
+[2024-12-17T02:29:06.181+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1117) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-12-17T02:29:06.184+0000] {standard_task_runner.py:72} INFO - Started process 1121 to run task
+[2024-12-17T02:29:06.187+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'example_passing_params_via_test_command', 'run_this', 'scheduled__2024-12-17T02:28:00+00:00', '--job-id', '326', '--raw', '--subdir', '/home/***/.local/lib/python3.12/site-packages/***/example_dags/example_passing_params_via_test_command.py', '--cfg-path', '/tmp/tmpahhptexq']
+[2024-12-17T02:29:06.191+0000] {standard_task_runner.py:105} INFO - Job 326: Subtask run_this
+[2024-12-17T02:29:06.342+0000] {task_command.py:467} INFO - Running <TaskInstance: example_passing_params_via_test_command.run_this scheduled__2024-12-17T02:28:00+00:00 [running]> on host 5f5f90d5a1f0
+[2024-12-17T02:29:06.648+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='example_passing_params_via_test_command' AIRFLOW_CTX_TASK_ID='run_this' AIRFLOW_CTX_EXECUTION_DATE='2024-12-17T02:28:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-17T02:28:00+00:00'
+[2024-12-17T02:29:06.652+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-12-17T02:29:06.653+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-12-17T02:29:06.654+0000] {logging_mixin.py:190} INFO - Current task name:run_this state:running start_date:2024-12-17 02:29:06.057114+00:00
+[2024-12-17T02:29:06.655+0000] {logging_mixin.py:190} INFO - Dag name:example_passing_params_via_test_command and current dag run status:running
+[2024-12-17T02:29:06.656+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-12-17T02:29:06.658+0000] {logging_mixin.py:190} INFO -  'miff' was passed in via task params = agg
+[2024-12-17T02:29:06.659+0000] {python.py:240} INFO - Done. Returned value was: 1
+[2024-12-17T02:29:06.710+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-12-17T02:29:06.712+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=example_passing_params_via_test_command, task_id=run_this, run_id=scheduled__2024-12-17T02:28:00+00:00, execution_date=20241217T022800, start_date=20241217T022906, end_date=20241217T022906
+[2024-12-17T02:29:06.731+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-12-17T02:29:06.732+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-12-17T02:29:06.733+0000] {logging_mixin.py:190} INFO - Dag name:example_passing_params_via_test_command queued_at:2024-12-17 02:29:00.483952+00:00
+[2024-12-17T02:29:06.734+0000] {logging_mixin.py:190} INFO - Task hostname:5f5f90d5a1f0 operator:_PythonDecoratedOperator
+[2024-12-17T02:29:06.767+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-12-17T02:29:06.786+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

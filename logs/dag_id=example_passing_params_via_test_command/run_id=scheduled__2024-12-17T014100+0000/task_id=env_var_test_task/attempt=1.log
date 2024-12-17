@@ -1,0 +1,28 @@
+[2024-12-17T01:43:11.921+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-17T01:43:11.996+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: example_passing_params_via_test_command.env_var_test_task scheduled__2024-12-17T01:41:00+00:00 [queued]>
+[2024-12-17T01:43:12.024+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: example_passing_params_via_test_command.env_var_test_task scheduled__2024-12-17T01:41:00+00:00 [queued]>
+[2024-12-17T01:43:12.026+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2024-12-17T01:43:12.075+0000] {taskinstance.py:2889} INFO - Executing <Task(_PythonDecoratedOperator): env_var_test_task> on 2024-12-17 01:41:00+00:00
+[2024-12-17T01:43:12.093+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=132) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-12-17T01:43:12.097+0000] {standard_task_runner.py:72} INFO - Started process 157 to run task
+[2024-12-17T01:43:12.097+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'example_passing_params_via_test_command', 'env_var_test_task', 'scheduled__2024-12-17T01:41:00+00:00', '--job-id', '179', '--raw', '--subdir', '/home/***/.local/lib/python3.12/site-packages/***/example_dags/example_passing_params_via_test_command.py', '--cfg-path', '/tmp/tmpgd030xv7']
+[2024-12-17T01:43:12.100+0000] {standard_task_runner.py:105} INFO - Job 179: Subtask env_var_test_task
+[2024-12-17T01:43:12.280+0000] {task_command.py:467} INFO - Running <TaskInstance: example_passing_params_via_test_command.env_var_test_task scheduled__2024-12-17T01:41:00+00:00 [running]> on host 5f5f90d5a1f0
+[2024-12-17T01:43:12.612+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='example_passing_params_via_test_command' AIRFLOW_CTX_TASK_ID='env_var_test_task' AIRFLOW_CTX_EXECUTION_DATE='2024-12-17T01:41:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-17T01:41:00+00:00'
+[2024-12-17T01:43:12.621+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-12-17T01:43:12.622+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-12-17T01:43:12.627+0000] {logging_mixin.py:190} INFO - Current task name:env_var_test_task state:running start_date:2024-12-17 01:43:11.998411+00:00
+[2024-12-17T01:43:12.628+0000] {logging_mixin.py:190} INFO - Dag name:example_passing_params_via_test_command and current dag run status:running
+[2024-12-17T01:43:12.629+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-12-17T01:43:12.635+0000] {python.py:240} INFO - Done. Returned value was: None
+[2024-12-17T01:43:12.660+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-12-17T01:43:12.661+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=example_passing_params_via_test_command, task_id=env_var_test_task, run_id=scheduled__2024-12-17T01:41:00+00:00, execution_date=20241217T014100, start_date=20241217T014311, end_date=20241217T014312
+[2024-12-17T01:43:12.690+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-12-17T01:43:12.691+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-12-17T01:43:12.695+0000] {logging_mixin.py:190} INFO - Dag name:example_passing_params_via_test_command queued_at:2024-12-17 01:42:02.477421+00:00
+[2024-12-17T01:43:12.698+0000] {logging_mixin.py:190} INFO - Task hostname:5f5f90d5a1f0 operator:_PythonDecoratedOperator
+[2024-12-17T01:43:12.759+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-12-17T01:43:12.868+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-12-17T01:43:12.887+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

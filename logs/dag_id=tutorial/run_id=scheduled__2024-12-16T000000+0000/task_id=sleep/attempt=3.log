@@ -1,0 +1,22 @@
+[2024-12-17T01:03:59.807+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-17T01:03:59.935+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: tutorial.sleep scheduled__2024-12-16T00:00:00+00:00 [queued]>
+[2024-12-17T01:03:59.971+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: tutorial.sleep scheduled__2024-12-16T00:00:00+00:00 [queued]>
+[2024-12-17T01:03:59.973+0000] {taskinstance.py:2866} INFO - Starting attempt 3 of 4
+[2024-12-17T01:04:00.044+0000] {taskinstance.py:2889} INFO - Executing <Task(BashOperator): sleep> on 2024-12-16 00:00:00+00:00
+[2024-12-17T01:04:00.065+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=74) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-12-17T01:04:00.071+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'tutorial', 'sleep', 'scheduled__2024-12-16T00:00:00+00:00', '--job-id', '103', '--raw', '--subdir', '/home/***/.local/lib/python3.12/site-packages/***/example_dags/tutorial.py', '--cfg-path', '/tmp/tmp4nae1ktz']
+[2024-12-17T01:04:00.086+0000] {standard_task_runner.py:72} INFO - Started process 97 to run task
+[2024-12-17T01:04:00.087+0000] {standard_task_runner.py:105} INFO - Job 103: Subtask sleep
+[2024-12-17T01:04:00.311+0000] {task_command.py:467} INFO - Running <TaskInstance: tutorial.sleep scheduled__2024-12-16T00:00:00+00:00 [running]> on host cc9ebe3f3098
+[2024-12-17T01:04:00.694+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='***@example.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='tutorial' AIRFLOW_CTX_TASK_ID='sleep' AIRFLOW_CTX_EXECUTION_DATE='2024-12-16T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-16T00:00:00+00:00'
+[2024-12-17T01:04:00.707+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-12-17T01:04:00.709+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-12-17T01:04:00.711+0000] {logging_mixin.py:190} INFO - Current task name:sleep state:running start_date:2024-12-17 01:03:59.937387+00:00
+[2024-12-17T01:04:00.712+0000] {logging_mixin.py:190} INFO - Dag name:tutorial and current dag run status:running
+[2024-12-17T01:04:00.713+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-12-17T01:04:00.771+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2024-12-17T01:04:00.787+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'sleep 5']
+[2024-12-17T01:04:00.935+0000] {subprocess.py:99} INFO - Output:
+[2024-12-17T01:04:03.415+0000] {local_task_job_runner.py:266} INFO - Task exited with return code -9. For more information, see https://***.apache.org/docs/apache-***/stable/troubleshooting.html#LocalTaskJob-killed

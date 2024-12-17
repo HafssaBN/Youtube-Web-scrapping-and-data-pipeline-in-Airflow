@@ -1,0 +1,137 @@
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from datetime import datetime, timedelta
+import pandas as pd
+import os
+from googleapiclient.discovery import build
+
+import pandas as pd
+
+
+
+nltk.download('stopwords')
+nltk.download('punkt')
+from wordcloud import WordCloud
+# Importing the functions from your other files
+from preprocessing import preprocess_video_data
+from data_analysis import analyze_video_performance
+from scrapping import get_channel_stats, get_video_details, get_comments_in_videos  # Assuming these are already implemented
+
+api_key = 'AIzaSyAxs7uzwcGOqJftvR_p9gqZ2nT6KmwtKj4'
+channel_ids = ['UCoOae5nYA7VqaXzerajD0lg']  # Example channel IDs
+playlistId = "UUoOae5nYA7VqaXzerajD0lg"
+
+# Define default arguments for the DAG
+default_args = {
+    'owner': 'airflow',
+    'retries': 3,
+    'retry_delay': timedelta(minutes=5),  # Reduced retry delay
+    'start_date': datetime(2024, 12, 16),  # Set your start date
+}
+
+# Initialize the DAG
+dag = DAG(
+    'video_data_processing_dag',
+    default_args=default_args,
+    description='A DAG for scraping, preprocessing, and analyzing video data',
+    schedule_interval=timedelta(days=1),  # Adjust the schedule as needed
+)
+
+# Task 1: Scrape channel statistics
+def get_channel_stats_task(youtube, channel_ids):
+    channel_stats = get_channel_stats(youtube, channel_ids)
+    # Save the channel stats to a file and push the file path to XCom
+    output_file = "/opt/airflow/data/channel_stats.csv"
+    channel_stats.to_csv(output_file, index=False)
+    return output_file
+
+get_channel_stats_operator = PythonOperator(
+    task_id='get_channel_stats',
+    python_callable=get_channel_stats_task,
+    op_args=[build('youtube', 'v3', developerKey=api_key), channel_ids],
+    provide_context=True,  # Allows the task to return data to XCom
+    dag=dag,
+)
+
+# Task 2: Scrape video details
+def get_video_details_task(youtube, playlist_id):
+    video_ids = get_video_details(youtube, playlist_id)
+    # Save the video details to a file and push the file path to XCom
+    output_file = "/opt/airflow/data/video_details.csv"
+    video_ids.to_csv(output_file, index=False)
+    return output_file
+
+get_video_details_operator = PythonOperator(
+    task_id='get_video_details',
+    python_callable=get_video_details_task,
+    op_args=[build('youtube', 'v3', developerKey=api_key), playlistId],
+    provide_context=True,  # Allows the task to return data to XCom
+    dag=dag,
+)
+
+# Task 3: Scrape comments
+def get_comments_in_videos_task(youtube, video_ids):
+    comments = get_comments_in_videos(youtube, video_ids)
+    # Save the comments to a file and push the file path to XCom
+    output_file = "/opt/airflow/data/comments.csv"
+    comments.to_csv(output_file, index=False)
+    return output_file
+
+get_comments_in_videos_operator = PythonOperator(
+    task_id='get_comments_in_videos',
+    python_callable=get_comments_in_videos_task,
+    op_args=[build('youtube', 'v3', developerKey=api_key), ['UCoOae5nYA7VqaXzerajD0lg']],  # Replace with actual video IDs
+    provide_context=True,  # Allows the task to return data to XCom
+    dag=dag,
+)
+
+# Task 4: Preprocess video data
+def preprocessing_task(**kwargs):
+    # Pull the scraped video details DataFrame from the previous task
+    video_details_file = kwargs['ti'].xcom_pull(task_ids='get_video_details', key='return_value')
+    
+    if video_details_file and os.path.exists(video_details_file):
+        video_details_df = pd.read_csv(video_details_file)
+    
+        # Define output path for processed data
+        output_file = "/opt/airflow/data/preprocessed_video_details.csv"
+        
+        # Call the preprocessing function
+        processed_df = preprocess_video_data(video_details_df)
+        
+        # Save processed data and push the file path to XCom for future tasks
+        processed_df.to_csv(output_file, index=False)
+        kwargs['ti'].xcom_push(key='preprocessed_file', value=output_file)
+    else:
+        raise ValueError("No valid video details file found in XCom or file does not exist.")
+
+preprocess_data_task = PythonOperator(
+    task_id='preprocess_video_data',
+    python_callable=preprocessing_task,
+    provide_context=True,  # You can keep this if you're using kwargs directly
+    dag=dag,
+)
+
+# Task 5: Analyze video performance
+def analyze_performance_task(**kwargs):
+    # Pull the preprocessed file path from XCom
+    preprocessed_file = kwargs['ti'].xcom_pull(task_ids='preprocess_video_data', key='preprocessed_file')
+    
+    if preprocessed_file and os.path.exists(preprocessed_file):
+        preprocessed_df = pd.read_csv(preprocessed_file)
+        
+        # Analyze the performance of the videos
+        analyze_video_performance(preprocessed_df)
+    else:
+        raise ValueError("No preprocessed video data found in XCom or file does not exist.")
+
+analyze_video_performance_task = PythonOperator(
+    task_id='analyze_video_performance',
+    python_callable=analyze_performance_task,
+    provide_context=True,
+    dag=dag,
+)
+
+# Define task dependencies
+get_channel_stats_operator >> [get_video_details_operator, get_comments_in_videos_operator]
+get_video_details_operator >> preprocess_data_task >> analyze_video_performance_task
